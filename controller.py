@@ -2,6 +2,10 @@ from PyQt5.QtWidgets import *
 from view import *
 import random
 
+
+QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+
 master_deck = [["ace", "clubs", "assets/Clubs 1.png", 14],
                ["deuce", "clubs", "assets/Clubs 2.png", 2],
                ["three", "clubs", "assets/Clubs 3.png", 3],
