@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
-from view import *
+from view2 import *
 import random
+from score import score
 
 master_deck = [["ace", "clubs", "assets/Clubs 1.png", 14],
                ["deuce", "clubs", "assets/Clubs 2.png", 2],
@@ -55,6 +56,7 @@ master_deck = [["ace", "clubs", "assets/Clubs 1.png", 14],
                ["queen", "spades", "assets/Spades 12.png", 12],
                ["king", "spades", "assets/Spades 13.png", 13]]
 
+
 class Controller(QMainWindow, Ui_poker_window):
     player_hand = []
     computer_hand = []
@@ -65,10 +67,11 @@ class Controller(QMainWindow, Ui_poker_window):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
         self.deal_button.clicked.connect(lambda: self.deal())
-        self.show_button.clicked.connect(lambda: self.show())
+        self.show_button.clicked.connect(lambda: self.swap())
         self.clear_button.clicked.connect(lambda: self.reset())
+        self.winner_label.setText("Deal cards to begin.")
 
-# This function deals cards to both the player and the computer and changes the cards in the player's display accordingly.
+    # This function deals cards to both the player and the computer and changes the cards in the player's display accordingly.
     def deal(self):
         if len(self.working_deck) >= 10:
             for i in range(5):
@@ -81,6 +84,59 @@ class Controller(QMainWindow, Ui_poker_window):
         self.player_hand_card4.setPixmap(QtGui.QPixmap(self.player_hand[3][2]))
         self.player_hand_card5.setPixmap(QtGui.QPixmap(self.player_hand[4][2]))
 
+        self.winner_label.setText("Select up to three cards you wish to replace, then show.")
+
+    # This function replaces the player's cards they want gotten rid of and then finds out who won the game.
+    # Note that I tried to name this function "show", but the program wouldn't run unless I named it something different, for some reason.
+    def swap(self):
+        num_checked = 0
+        if self.card_swap1.isChecked():
+            num_checked += 1
+        if self.card_swap2.isChecked():
+            num_checked += 1
+        if self.card_swap3.isChecked():
+            num_checked += 1
+        if self.card_swap4.isChecked():
+            num_checked += 1
+        if self.card_swap5.isChecked():
+            num_checked += 1
+
+        if num_checked > 3:
+            self.winner_label.setText("Please select only up to three cards or none at all.")
+        else:
+            if len(self.working_deck) >= 5:
+                if self.card_swap1.isChecked():
+                    self.player_hand[0] = self.working_deck.pop()
+                if self.card_swap2.isChecked():
+                    self.player_hand[1] = self.working_deck.pop()
+                if self.card_swap3.isChecked():
+                    self.player_hand[2] = self.working_deck.pop()
+                if self.card_swap4.isChecked():
+                    self.player_hand[3] = self.working_deck.pop()
+                if self.card_swap5.isChecked():
+                    self.player_hand[4] = self.working_deck.pop()
+
+            self.player_hand_card1.setPixmap(QtGui.QPixmap(self.player_hand[0][2]))
+            self.player_hand_card2.setPixmap(QtGui.QPixmap(self.player_hand[1][2]))
+            self.player_hand_card3.setPixmap(QtGui.QPixmap(self.player_hand[2][2]))
+            self.player_hand_card4.setPixmap(QtGui.QPixmap(self.player_hand[3][2]))
+            self.player_hand_card5.setPixmap(QtGui.QPixmap(self.player_hand[4][2]))
+
+            self.computer_hand_card1.setPixmap(QtGui.QPixmap(self.computer_hand[0][2]))
+            self.computer_hand_card2.setPixmap(QtGui.QPixmap(self.computer_hand[1][2]))
+            self.computer_hand_card3.setPixmap(QtGui.QPixmap(self.computer_hand[2][2]))
+            self.computer_hand_card4.setPixmap(QtGui.QPixmap(self.computer_hand[3][2]))
+            self.computer_hand_card5.setPixmap(QtGui.QPixmap(self.computer_hand[4][2]))
+
+            computer_handname, computer_score = score(self.computer_hand)
+            player_handname, player_score = score(self.player_hand)
+
+            if player_score > computer_score:
+                self.winner_label.setText(f"You win! You had a(n) {player_handname}.")
+            else:
+                self.winner_label.setText(f"You lose! The computer had a(n) {computer_handname}.")
+
+    # This function returns everything back to how it was when the program started.
     def reset(self):
         self.player_hand = []
         self.computer_hand = []
@@ -98,3 +154,5 @@ class Controller(QMainWindow, Ui_poker_window):
         self.player_hand_card3.setPixmap(QtGui.QPixmap("assets/Back Red 1.png"))
         self.player_hand_card4.setPixmap(QtGui.QPixmap("assets/Back Red 1.png"))
         self.player_hand_card5.setPixmap(QtGui.QPixmap("assets/Back Red 1.png"))
+
+        self.winner_label.setText("Deal cards to begin.")

@@ -42,7 +42,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="computer_hand_card2">
@@ -58,7 +58,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="computer_hand_card3">
@@ -74,7 +74,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="computer_hand_card4">
@@ -90,7 +90,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="computer_hand_card5">
@@ -106,7 +106,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="player_hand_card5">
@@ -122,7 +122,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="player_hand_card4">
@@ -138,7 +138,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="player_hand_card3">
@@ -154,7 +154,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="player_hand_card1">
@@ -170,7 +170,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="player_hand_card2">
@@ -186,7 +186,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="deck_icon3">
@@ -202,7 +202,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="deck_icon2">
@@ -218,7 +218,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
    </widget>
    <widget class="QLabel" name="deck_icon1">
@@ -234,100 +234,8 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../Cards Pack/PNG/Large/Back Red 1.png</pixmap>
+     <pixmap>Back Red 1.png</pixmap>
     </property>
-   </widget>
-   <widget class="QGroupBox" name="player_hand_swaps">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>290</y>
-      <width>661</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Baskerville</family>
-     </font>
-    </property>
-    <property name="title">
-     <string>Select the cards you wish to replace, then hit the show button.</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignHCenter|Qt::AlignTop</set>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-    <property name="checkable">
-     <bool>false</bool>
-    </property>
-    <widget class="QRadioButton" name="player_hand_swap1">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>20</y>
-       <width>21</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="player_hand_swap2">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>20</y>
-       <width>21</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="player_hand_swap3">
-     <property name="geometry">
-      <rect>
-       <x>320</x>
-       <y>20</y>
-       <width>21</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="player_hand_swap4">
-     <property name="geometry">
-      <rect>
-       <x>460</x>
-       <y>20</y>
-       <width>21</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="player_hand_swap5">
-     <property name="geometry">
-      <rect>
-       <x>600</x>
-       <y>20</y>
-       <width>21</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
    </widget>
    <widget class="QPushButton" name="deal_button">
     <property name="geometry">
@@ -398,10 +306,10 @@
    <widget class="QLabel" name="winner_label">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>160</y>
-      <width>561</width>
-      <height>181</height>
+      <x>20</x>
+      <y>480</y>
+      <width>751</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -410,15 +318,92 @@
       <pointsize>96</pointsize>
      </font>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgba(255, 255, 255, 0)</string>
-    </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;Select the cards you wish to replace&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
+   </widget>
+   <widget class="QCheckBox" name="card_swap3">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>300</y>
+      <width>16</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QCheckBox" name="card_swap4">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>300</y>
+      <width>16</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QCheckBox" name="card_swap5">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>300</y>
+      <width>16</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QCheckBox" name="card_swap2">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>300</y>
+      <width>16</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QCheckBox" name="card_swap1">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>300</y>
+      <width>16</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -441,4 +426,7 @@
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>
