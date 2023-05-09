@@ -1,6 +1,6 @@
 from controller import *
 
-def main():
+def main() -> None:
     app = QApplication([])
     window = Controller()
     window.show()
