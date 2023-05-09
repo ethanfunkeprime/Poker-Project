@@ -3,6 +3,20 @@ from view2 import *
 import random
 from score import score
 
+# Card images for this project taken from opengameart.org
+# License that came with cards:
+# ------------------------------------------------------------------------------------------
+# Card Pack by Andrew Tidey
+#
+# 	License (Creative Commons Zero, CC0)
+# 	http://creativecommons.org/publicdomain/zero/1.0/
+# 	You may use these assets in personal and commercial projects.
+#
+# 	Credit to me via name (Andrew Tidey) or link to website (andrewtidey.blogspot.co.uk) is
+# 	appreciated but not necessary :)
+# -----------------------------------------------------------------------------------------
+# Thank you, Andrew!
+
 master_deck = [["ace", "clubs", "assets/Clubs 1.png", 14],
                ["deuce", "clubs", "assets/Clubs 2.png", 2],
                ["three", "clubs", "assets/Clubs 3.png", 3],
@@ -70,6 +84,13 @@ class Controller(QMainWindow, Ui_poker_window):
         self.show_button.clicked.connect(lambda: self.swap())
         self.clear_button.clicked.connect(lambda: self.reset())
         self.winner_label.setText("Deal cards to begin.")
+        self.show_button.setHidden(True)
+        self.card_swap1.setHidden(True)
+        self.card_swap2.setHidden(True)
+        self.card_swap3.setHidden(True)
+        self.card_swap4.setHidden(True)
+        self.card_swap5.setHidden(True)
+        self.clear_button.setHidden(True)
 
     # This function deals cards to both the player and the computer and changes the cards in the player's display accordingly.
     def deal(self):
@@ -85,9 +106,17 @@ class Controller(QMainWindow, Ui_poker_window):
         self.player_hand_card5.setPixmap(QtGui.QPixmap(self.player_hand[4][2]))
 
         self.winner_label.setText("Select up to three cards you wish to replace, then show.")
+        self.clear_button.setHidden(False)
+        self.show_button.setHidden(False)
+        self.card_swap1.setHidden(False)
+        self.card_swap2.setHidden(False)
+        self.card_swap3.setHidden(False)
+        self.card_swap4.setHidden(False)
+        self.card_swap5.setHidden(False)
+        self.deal_button.setHidden(True)
 
     # This function replaces the player's cards they want gotten rid of and then finds out who won the game.
-    # Note that I tried to name this function "show", but the program wouldn't run unless I named it something different, for some reason.
+    # Note that I (Ethan) tried to name this function "show", but the program wouldn't run unless I named it something different, for some reason.
     def swap(self):
         num_checked = 0
         if self.card_swap1.isChecked():
@@ -132,9 +161,16 @@ class Controller(QMainWindow, Ui_poker_window):
             player_handname, player_score = score(self.player_hand)
 
             if player_score > computer_score:
-                self.winner_label.setText(f"You win! You had a(n) {player_handname}.")
+                self.winner_label.setText(f"You win! You had: {player_handname}.")
             else:
-                self.winner_label.setText(f"You lose! The computer had a(n) {computer_handname}.")
+                self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
+
+            self.show_button.setHidden(True)
+            self.card_swap1.setHidden(True)
+            self.card_swap2.setHidden(True)
+            self.card_swap3.setHidden(True)
+            self.card_swap4.setHidden(True)
+            self.card_swap5.setHidden(True)
 
     # This function returns everything back to how it was when the program started.
     def reset(self):
@@ -156,3 +192,16 @@ class Controller(QMainWindow, Ui_poker_window):
         self.player_hand_card5.setPixmap(QtGui.QPixmap("assets/Back Red 1.png"))
 
         self.winner_label.setText("Deal cards to begin.")
+        self.show_button.setHidden(True)
+        self.card_swap1.setHidden(True)
+        self.card_swap2.setHidden(True)
+        self.card_swap3.setHidden(True)
+        self.card_swap4.setHidden(True)
+        self.card_swap5.setHidden(True)
+        self.clear_button.setHidden(True)
+        self.deal_button.setHidden(False)
+        self.card_swap1.setChecked(False)
+        self.card_swap2.setChecked(False)
+        self.card_swap3.setChecked(False)
+        self.card_swap4.setChecked(False)
+        self.card_swap5.setChecked(False)

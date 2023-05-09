@@ -20,6 +20,7 @@ def score(player_hand):
 
     for i in range(len(hand_vals)):
         sorted_hand.append(min(hand_vals))
+        hand_vals.remove(min(hand_vals))
 
     if hand_suits[0] == hand_suits[1] == hand_suits[2] == hand_suits[3] == hand_suits[4]:
         if sorted_hand[0] == 10 and sorted_hand[1] == 11 and sorted_hand[2] == 12 and sorted_hand[3] == 13 and sorted_hand[4] == 14:
