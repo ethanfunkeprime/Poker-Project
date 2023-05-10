@@ -1,9 +1,9 @@
-def score(player_hand):
-
+def score(player_hand: list) -> tuple:
     """
-    player_hand is a list of cards.  Each card is a list of number, suit, .png, and card value in that order.
-    Card values are: A=14, K=13, Q=12, J=11, 10=10, 9=9, 8=8, 7=7, 6=6, 5=5, 4=4, 3=3, and 2=2.
-    This returns the name of the type of hand and a point value that can be used to compare hands to find a winner.
+    Determines what type of hand the player holds and assigns it a point value to be used to compare hands to find a winner.
+    Card values are: A=14 points, K=13, Q=12, J=11, 10=10, 9=9, 8=8, 7=7, 6=6, 5=5, 4=4, 3=3, and 2=2.
+    :param player_hand: List of cards in the player's hand.
+    :return: Tuple of the name of the type of hand and a point value to be used to compare hands to find a winner.
     """
 
     hand_nums = []

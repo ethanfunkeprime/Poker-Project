@@ -1,21 +1,26 @@
 from PyQt5.QtWidgets import *
-from view2 import *
+from view import *
 import random
 from score import score
 
-# Card images for this project taken from opengameart.org
-# License that came with cards:
-# ------------------------------------------------------------------------------------------
-# Card Pack by Andrew Tidey
-#
-# 	License (Creative Commons Zero, CC0)
-# 	http://creativecommons.org/publicdomain/zero/1.0/
-# 	You may use these assets in personal and commercial projects.
-#
-# 	Credit to me via name (Andrew Tidey) or link to website (andrewtidey.blogspot.co.uk) is
-# 	appreciated but not necessary :)
-# -----------------------------------------------------------------------------------------
-# Thank you, Andrew!
+"""
+Card images for this project taken from opengameart.org
+License that came with cards:
+------------------------------------------------------------------------------------------
+Card Pack by Andrew Tidey
+
+    License (Creative Commons Zero, CC0)
+    http://creativecommons.org/publicdomain/zero/1.0/
+    You may use these assets in personal and commercial projects.
+
+    Credit to me via name (Andrew Tidey) or link to website (andrewtidey.blogspot.co.uk) is
+    appreciated but not necessary :)
+-----------------------------------------------------------------------------------------
+Thank you, Andrew!
+"""
+
+QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
 master_deck = [["ace", "clubs", "assets/Clubs 1.png", 14],
                ["deuce", "clubs", "assets/Clubs 2.png", 2],
@@ -77,7 +82,13 @@ class Controller(QMainWindow, Ui_poker_window):
     working_deck = master_deck[:]
     random.shuffle(working_deck)
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
+        """
+        Sets up display window and connects buttons to functions.
+        :param args:
+        :param kwargs:
+        """
+
         super().__init__(*args, **kwargs)
         self.setupUi(self)
         self.deal_button.clicked.connect(lambda: self.deal())
@@ -92,8 +103,11 @@ class Controller(QMainWindow, Ui_poker_window):
         self.card_swap5.setHidden(True)
         self.clear_button.setHidden(True)
 
-    # This function deals cards to both the player and the computer and changes the cards in the player's display accordingly.
-    def deal(self):
+    def deal(self) -> None:
+        """
+        Deals five cards to computer and five cards to player and shows the cards in the player's display.
+        """
+
         if len(self.working_deck) >= 10:
             for i in range(5):
                 self.computer_hand.append(self.working_deck.pop())
@@ -105,7 +119,7 @@ class Controller(QMainWindow, Ui_poker_window):
         self.player_hand_card4.setPixmap(QtGui.QPixmap(self.player_hand[3][2]))
         self.player_hand_card5.setPixmap(QtGui.QPixmap(self.player_hand[4][2]))
 
-        self.winner_label.setText("Select up to three cards you wish to replace, then show.")
+        self.winner_label.setText("Select up to three cards to replace, then press show.")
         self.clear_button.setHidden(False)
         self.show_button.setHidden(False)
         self.card_swap1.setHidden(False)
@@ -115,9 +129,11 @@ class Controller(QMainWindow, Ui_poker_window):
         self.card_swap5.setHidden(False)
         self.deal_button.setHidden(True)
 
-    # This function replaces the player's cards they want gotten rid of and then finds out who won the game.
-    # Note that I (Ethan) tried to name this function "show", but the program wouldn't run unless I named it something different, for some reason.
-    def swap(self):
+    def swap(self) -> None:
+        """
+        Replaces the player's cards they wish to discard and finds the game's winner.
+        """
+
         num_checked = 0
         if self.card_swap1.isChecked():
             num_checked += 1
@@ -131,7 +147,7 @@ class Controller(QMainWindow, Ui_poker_window):
             num_checked += 1
 
         if num_checked > 3:
-            self.winner_label.setText("Please select only up to three cards or none at all.")
+            self.winner_label.setText("Please select only up to three cards.")
         else:
             if len(self.working_deck) >= 5:
                 if self.card_swap1.isChecked():
@@ -162,6 +178,8 @@ class Controller(QMainWindow, Ui_poker_window):
 
             if player_score > computer_score:
                 self.winner_label.setText(f"You win! You had: {player_handname}.")
+            elif player_score == computer_score:
+                self.tie_function(self.player_hand, self.computer_hand, player_handname, computer_handname)
             else:
                 self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
 
@@ -172,8 +190,11 @@ class Controller(QMainWindow, Ui_poker_window):
             self.card_swap4.setHidden(True)
             self.card_swap5.setHidden(True)
 
-    # This function returns everything back to how it was when the program started.
-    def reset(self):
+    def reset(self) -> None:
+        """
+        Returns everything to how it was when the program started.
+        """
+
         self.player_hand = []
         self.computer_hand = []
         self.working_deck = master_deck[:]
@@ -205,3 +226,67 @@ class Controller(QMainWindow, Ui_poker_window):
         self.card_swap3.setChecked(False)
         self.card_swap4.setChecked(False)
         self.card_swap5.setChecked(False)
+
+    def tie_function(self, player_hand: list, computer_hand: list, player_handname: str, computer_handname: str) -> None:
+        """
+        Determines who wins in a draw between the player and the computer by comparing all the cards in their hands.
+        :param player_hand: List of cards in the player's hand.
+        :param computer_hand: List of cards in the computer's hand.
+        :param player_handname: Name of the type of hand the player has.
+        :param computer_handname: Name of the type of hand the computer has.
+        """
+
+        player_hand_nums = []
+        player_hand_suits = []
+        player_hand_vals = []
+        player_sorted_hand = []
+
+        for card in player_hand:
+            player_hand_nums.append(card[0])
+            player_hand_suits.append(card[1])
+            player_hand_vals.append(card[3])
+
+        for i in range(len(player_hand_vals)):
+            player_sorted_hand.append(min(player_hand_vals))
+            player_hand_vals.remove(min(player_hand_vals))
+
+        computer_hand_nums = []
+        computer_hand_suits = []
+        computer_hand_vals = []
+        computer_sorted_hand = []
+
+        for card in computer_hand:
+            computer_hand_nums.append(card[0])
+            computer_hand_suits.append(card[1])
+            computer_hand_vals.append(card[3])
+
+        for i in range(len(computer_hand_vals)):
+            computer_sorted_hand.append(min(computer_hand_vals))
+            computer_hand_vals.remove(min(computer_hand_vals))
+
+        if player_sorted_hand[4] > computer_sorted_hand[4]:
+            self.winner_label.setText(f"You win! You had: {player_handname}.")
+        elif player_sorted_hand[4] < computer_sorted_hand[4]:
+            self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
+        else:
+            if player_sorted_hand[3] > computer_sorted_hand[3]:
+                self.winner_label.setText(f"You win! You had: {player_handname}.")
+            elif player_sorted_hand[3] < computer_sorted_hand[3]:
+                self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
+            else:
+                if player_sorted_hand[2] > computer_sorted_hand[2]:
+                    self.winner_label.setText(f"You win! You had: {player_handname}.")
+                elif player_sorted_hand[2] < computer_sorted_hand[2]:
+                    self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
+                else:
+                    if player_sorted_hand[1] > computer_sorted_hand[1]:
+                        self.winner_label.setText(f"You win! You had: {player_handname}.")
+                    elif player_sorted_hand[1] < computer_sorted_hand[1]:
+                        self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
+                    else:
+                        if player_sorted_hand[0] > computer_sorted_hand[0]:
+                            self.winner_label.setText(f"You win! You had: {player_handname}.")
+                        elif player_sorted_hand[0] < computer_sorted_hand[0]:
+                            self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
+                        else:
+                            self.winner_label.setText(f"You draw! Both you and the computer had: {computer_handname}.")
