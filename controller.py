@@ -264,29 +264,17 @@ class Controller(QMainWindow, Ui_poker_window):
             computer_sorted_hand.append(min(computer_hand_vals))
             computer_hand_vals.remove(min(computer_hand_vals))
 
-        if player_sorted_hand[4] > computer_sorted_hand[4]:
-            self.winner_label.setText(f"You win! You had: {player_handname}.")
-        elif player_sorted_hand[4] < computer_sorted_hand[4]:
-            self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
-        else:
-            if player_sorted_hand[3] > computer_sorted_hand[3]:
+        i = 4
+        while i >= 0:
+            if player_sorted_hand[i] > computer_sorted_hand[i]:
                 self.winner_label.setText(f"You win! You had: {player_handname}.")
-            elif player_sorted_hand[3] < computer_sorted_hand[3]:
+                break
+            elif player_sorted_hand[i] < computer_sorted_hand[i]:
                 self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
+                break
             else:
-                if player_sorted_hand[2] > computer_sorted_hand[2]:
-                    self.winner_label.setText(f"You win! You had: {player_handname}.")
-                elif player_sorted_hand[2] < computer_sorted_hand[2]:
-                    self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
-                else:
-                    if player_sorted_hand[1] > computer_sorted_hand[1]:
-                        self.winner_label.setText(f"You win! You had: {player_handname}.")
-                    elif player_sorted_hand[1] < computer_sorted_hand[1]:
-                        self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
-                    else:
-                        if player_sorted_hand[0] > computer_sorted_hand[0]:
-                            self.winner_label.setText(f"You win! You had: {player_handname}.")
-                        elif player_sorted_hand[0] < computer_sorted_hand[0]:
-                            self.winner_label.setText(f"You lose! The computer had: {computer_handname}.")
-                        else:
-                            self.winner_label.setText(f"You draw! Both you and the computer had: {computer_handname}.")
+                i -= 1
+
+        if self.winner_label.text() == 'Select up to three cards to replace, then press show.' \
+                or self.winner_label.text() == 'Please select only up to three cards.':
+            self.winner_label.setText(f"You draw! Both you and the computer had: {computer_handname}.")
